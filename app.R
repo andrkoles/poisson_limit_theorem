@@ -33,8 +33,6 @@ ui <- page_fillable(
            (page 393)
            
            DOI: https://doi.org/10.1007/978-3-031-46270-2
-           
-           
         ")
       )
     ),
