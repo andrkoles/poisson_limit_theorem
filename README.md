@@ -20,6 +20,10 @@ remains fixed and equal to $\lambda$ then the Binomial distribution is well
 
 approximated by the Poisson distribution with parameter $\lambda=np$.
 
+_Reference_
+
+Exploring University Mathematics with Python, Siri Chongchitnan, Springer, 2023, p. 393
+
 ### Shiny App
 
 In this Shiny app, the number of trials is controlled by a slider input which
