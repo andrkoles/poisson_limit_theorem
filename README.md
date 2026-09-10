@@ -20,7 +20,7 @@ remains fixed and equal to $\lambda$ then the Binomial distribution is well
 
 approximated by the Poisson distribution with parameter $\lambda=np$.
 
-_Reference_
+_Reference_:
 
 Exploring University Mathematics with Python, Siri Chongchitnan, Springer, 2023, p. 393
 
@@ -28,14 +28,16 @@ Exploring University Mathematics with Python, Siri Chongchitnan, Springer, 2023,
 
 In this Shiny app, the number of trials is controlled by a slider input which
 
-takes values from 10 to 1000. Behind the scenes the value of $p$ changes so that
+takes values from 10 to 200. Behind the scenes the value of $p$ changes so that
 
 the product $np$ remains fixed and equal to $\lambda$ which here is 5. As the
 
 number of trials grows larger the Binomial distribution converges to the
 Poisson
 
-distribution, as shown in the plot on the right.
+distribution, as shown in the interactive plot on the right. You can view an
+
+animation of the convergence by pressing the play button below the slider.
 
 A screenshot of the app:
 

@@ -2,6 +2,7 @@ library(shiny)
 library(ggplot2)
 library(tibble)
 library(bslib)
+library(tidyr)
 
 ui <- page_fillable(
   h4("Poisson Limit Theorem"),
@@ -14,8 +15,8 @@ ui <- page_fillable(
   layout_columns(
     card(
       card(
-        sliderInput("n", "n", min = 10, max = 1000, value = 10, animate = TRUE, 
-                    step = 5),
+        sliderInput("n", "n", min = 10, max = 200, value = 10, animate = TRUE, 
+                    step = 1),
       ),
       card(
         markdown("The binomial distribution is well approximated by the
@@ -53,19 +54,19 @@ server <- function(input, output, session) {
   
   data <- reactive({
     df <- tibble(
-      k = rep(0:10, 12),
+      k = rep(0:10, 2),
       prob = c(
-        rep(dpois(x = 0:10, lambda = 5), 6),
-        rep(dbinom(x = 0:10, size = input$n, prob = proba()), 6)
+        rep(dpois(x = 0:10, lambda = 5), 1),
+        rep(dbinom(x = 0:10, size = input$n, prob = proba()), 1)
       ),
-      dist = c(rep("Poisson", 66), rep("Binomial", 66))
-    ) 
+      dist = c(rep("Poisson", 11), rep("Binomial", 11))
+    )
   })
   
   output$plot <- renderPlot({
-    data() |> ggplot(aes(x = k, y = prob, color = dist)) +
-      geom_point(size = 4) +
-      geom_line(linewidth = 2) +
+    ggplot(data = data()) +
+      geom_point(aes(x = k, y = prob, color = dist), size = 4) +
+      geom_line(aes(x = k, y = prob, color = dist), linewidth = 2) +
       ylab("PROBABILITY") +
       ylim(0, 0.25) +
       scale_color_brewer(palette = "Set2") +
@@ -81,6 +82,11 @@ server <- function(input, output, session) {
         axis.title.x = element_text(size = 20, ),
         axis.title.y = element_text(size = 20),
         axis.text = element_text(size = 19)
+      ) + geom_segment(data = (data() |> pivot_wider(names_from = dist, 
+                                                     values_from = prob)),
+          aes(x = k, y = Poisson, xend = k, yend = Binomial),
+          linetype = "dashed",
+          colour = "black"
       )
   })
 }
