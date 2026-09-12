@@ -8,9 +8,11 @@ $$Pr(X=k)=\binom{n}{k}p^{k}q^{n-k}$$
 
 $$Pr(X=k)=\lambda^{k}\frac{\mathrm{e}^{-\lambda}}{k!}$$
 
-Where $n$ is the number of independent trials and $p$ is the probability of
+Where $n$ is the number of independent Bernoulli trials and $p$ is the probability
 
-success of a trial and $\lambda$ is the parameter of the Poisson distribution.
+of success of a single Bernoulli trial while $\lambda$ is the parameter of the
+
+Poisson distribution.
 
 ### Theorem
 
@@ -28,7 +30,7 @@ Exploring University Mathematics with Python, Siri Chongchitnan, Springer, 2023,
 
 In this Shiny app, the number of trials is controlled by a slider input which
 
-takes values from 10 to 200. Behind the scenes the value of $p$ changes so that
+takes values from 10 to 2000. Behind the scenes the value of $p$ changes so that
 
 the product $np$ remains fixed and equal to $\lambda$ which here is 5. As the
 
@@ -38,6 +40,16 @@ Poisson
 distribution, as shown in the interactive plot on the right. You can view an
 
 animation of the convergence by pressing the play button below the slider.
+
+Given that you have `shiny`, `ggplot2`, `tibble`, `bslib` and `tidyr` packages
+
+installed, you can run the app by executing the following command in R / RStudio
+
+console:
+
+```r
+R> shiny::runGitHub(repo = "andrkoles/poisson_limit_theorem")
+```
 
 A screenshot of the app:
 
